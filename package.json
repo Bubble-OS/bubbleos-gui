@@ -1,0 +1,27 @@
+{
+  "name": "bubbleos-gui",
+  "version": "0.0.1",
+  "description": "A graphical user interface version of the BubbleOS shell!",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . --platform=win32,darwin,linux --arch=x64 --out=./build --overwrite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bubble-OS/bubbleos-gui.git"
+  },
+  "keywords": [
+    "bubbleos",
+    "gui"
+  ],
+  "author": "Arnav Thorat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bubble-OS/bubbleos-gui/issues"
+  },
+  "homepage": "https://github.com/Bubble-OS/bubbleos-gui#readme",
+  "devDependencies": {
+    "electron": "^23.1.3"
+  }
+}
