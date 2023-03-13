@@ -12,7 +12,7 @@
       crossorigin="anonymous"
     />
 
-    <title>BubbleOS</title>
+    <title>Kill Task</title>
 
     <style>
       body {
@@ -26,16 +26,11 @@
     </style>
   </head>
   <body class="p-2">
-    <h1 class="display-4">BubbleOS</h1>
-    <p class="text-secondary fs-4">A GUI version of the classic BubbleOS shell!</p>
+    <h1 class="display-5">Kill Task</h1>
+    <p class="text-secondary fs-5">Alias in BubbleOS shell: <code>taskkill</code></p>
 
     <div class="mt-4">
-      <input
-        type="text"
-        class="form-control form-control-lg p-3"
-        id="command-input"
-        placeholder="Start typing..."
-      />
+      <input type="text" class="form-control p-2" id="pid-kill" placeholder="PID to kill..." />
     </div>
 
     <script
@@ -48,5 +43,7 @@
       integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
       crossorigin="anonymous"
     ></script>
+
+    <script src="taskkill.js"></script>
   </body>
 </html>

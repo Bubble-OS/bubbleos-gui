@@ -1,5 +1,5 @@
 // Get all required modules, including Electron
-const { app, BrowserWindow, dialog, screen } = require("electron");
+const { app, BrowserWindow, dialog, screen, Menu } = require("electron");
 const path = require("path");
 
 // Get variables
@@ -26,12 +26,62 @@ const createWindow = async () => {
     icon: path.join(__dirname, "assets", "bubble.ico"),
     // Allow Node.js
     webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
     },
   });
 
   // Load the main HTML file
   mainWindow.loadFile("index.html");
+
+  const menuTemplate = [
+    {
+      label: "File",
+      submenu: [
+        {
+          label: "Exit",
+          accelerator: "CmdOrCtrl+Q",
+          click: () => {
+            app.quit();
+          },
+        },
+      ],
+    },
+    {
+      label: "Commands",
+      submenu: [
+        {
+          label: "Kill Task",
+          accelerator: "CmdOrCtrl+K",
+          click: () => {
+            let win = new BrowserWindow({
+              width: 800,
+              height: 600,
+              icon: path.join(__dirname, "assets", "bubble.ico"),
+              webPreferences: {
+                nodeIntegration: true,
+              },
+            });
+
+            win.loadFile("src/commands/taskkill/taskkill.html");
+
+            win.webContents.openDevTools();
+
+            // Show the window when it's ready to be displayed
+            win.once("ready-to-show", () => {
+              win.show();
+            });
+          },
+        },
+      ],
+    },
+  ];
+
+  // create menu from template
+  const menu = Menu.buildFromTemplate(menuTemplate);
+
+  // set application menu
+  Menu.setApplicationMenu(menu);
 
   // If the app is in beta
   if (IN_BETA) {
